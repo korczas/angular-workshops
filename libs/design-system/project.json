@@ -2,7 +2,7 @@
     "name": "design-system",
     "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "sourceRoot": "libs/design-system/src",
-    "prefix": "angular-workshops",
+    "prefix": "ds",
     "projectType": "library",
     "tags": ["scope:design-system"],
     "targets": {

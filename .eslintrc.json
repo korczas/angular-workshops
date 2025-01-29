@@ -9,12 +9,26 @@
                 "@nx/enforce-module-boundaries": [
                     "error",
                     {
-                        "enforceBuildableLibDependency": true,
                         "allow": [],
                         "depConstraints": [
                             {
                                 "sourceTag": "*",
                                 "onlyDependOnLibsWithTags": ["*"]
+                            },
+                            {
+                                "sourceTag": "scope:design-system",
+                                "onlyDependOnLibsWithTags": ["scope:design-system"]
+                            },
+                            {
+                                "sourceTag": "scope:frontend",
+                                "onlyDependOnLibsWithTags": [
+                                    "scope:frontend",
+                                    "scope:design-system"
+                                ]
+                            },
+                            {
+                                "sourceTag": "scope:design-backend",
+                                "onlyDependOnLibsWithTags": ["scope:design-backend"]
                             }
                         ]
                     }

@@ -1,0 +1,21 @@
+<div class="form-group">
+    <label>
+        {{ label }}
+        <textarea
+            [class.ng-dirty]="hasError"
+            [class.ng-invalid]="hasError"
+            [formControl]="control"
+            pInputTextarea
+            placeholder="{{ placeholder }}"
+            [rows]="rows"
+        ></textarea>
+    </label>
+    <small *ngIf="helperText">{{ helperText }}</small>
+
+    <div
+        *ngIf="hasError"
+        class="p-error"
+    >
+        {{ errorMessage }}
+    </div>
+</div>

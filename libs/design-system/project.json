@@ -37,7 +37,12 @@
                 "outputDir": "dist/storybook/design-system",
                 "configDir": "libs/design-system/.storybook",
                 "browserTarget": "design-system:build-storybook",
-                "compodoc": false
+                "compodoc": false,
+                "styles": [
+                    "primeicons/primeicons.css",
+                    "primeng/resources/primeng.css",
+                    "primeng/resources/themes/vela-orange/theme.css"
+                ]
             },
             "configurations": {
                 "ci": {

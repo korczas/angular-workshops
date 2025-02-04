@@ -1,0 +1,22 @@
+<div class="form-group">
+    <label>
+        {{ label }}
+        <p-dropdown
+            [class.ng-dirty]="hasError"
+            [class.ng-invalid]="hasError"
+            [formControl]="control"
+            placeholder="{{ placeholder }}"
+            [options]="options"
+            [optionLabel]="labelKey"
+            [optionValue]="valueKey"
+        />
+    </label>
+    <small *ngIf="helperText">{{ helperText }}</small>
+
+    <div
+        *ngIf="hasError"
+        class="p-error"
+    >
+        {{ errorMessage }}
+    </div>
+</div>

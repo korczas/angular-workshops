@@ -1,5 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import * as yup from 'yup';
+
+yup.setLocale({
+    mixed: {
+        required: 'This field is required',
+        notType: 'This field is required',
+    },
+});
 
 @Component({
     standalone: true,

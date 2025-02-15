@@ -1,3 +1,7 @@
 <div class="container">
-    <p>apply works!</p>
+    <app-apply-for-visa
+        [species]="species"
+        [initialValues]="initialValues"
+        (handleSubmit)="onSubmit($event)"
+    />
 </div>

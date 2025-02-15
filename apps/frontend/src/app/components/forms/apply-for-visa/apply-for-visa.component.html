@@ -1,0 +1,78 @@
+<div>
+    <h2>{{ isEdit ? 'Update your application' : 'Apply for a visa' }}</h2>
+    <p *ngIf="!isEdit">
+        Please fill out the form below to apply for a visa to travel to another planet.
+    </p>
+
+    <form
+        [formGroup]="applyForVisaForm"
+        (ngSubmit)="onSubmit()"
+    >
+        <ds-form-input
+            [control]="getControl('fullName')"
+            [hasError]="hasError('fullName')"
+            [errorMessage]="getErrorMessage('fullName')"
+            label="Full name"
+        />
+
+        <ds-form-input
+            [control]="getControl('email')"
+            [hasError]="hasError('email')"
+            [errorMessage]="getErrorMessage('email')"
+            label="Email"
+            type="email"
+        />
+
+        <ds-form-input
+            [control]="getControl('destination')"
+            [hasError]="hasError('destination')"
+            [errorMessage]="getErrorMessage('destination')"
+            label="Planet of destination"
+        />
+
+        <ds-form-select
+            [control]="getControl('species')"
+            [hasError]="hasError('species')"
+            [errorMessage]="getErrorMessage('species')"
+            label="Species"
+            [options]="species"
+        />
+
+        <ds-form-datepicker
+            [control]="getControl('arrivalDate')"
+            [hasError]="hasError('arrivalDate')"
+            [errorMessage]="getErrorMessage('arrivalDate')"
+            label="Arrival date"
+        />
+
+        <ds-form-input
+            [control]="getControl('distance')"
+            [hasError]="hasError('distance')"
+            [errorMessage]="getErrorMessage('distance')"
+            label="Distance from home planet"
+            type="number"
+            helperText="In light years"
+        />
+
+        <ds-form-textarea
+            [control]="getControl('extraInfo')"
+            [hasError]="hasError('extraInfo')"
+            [errorMessage]="getErrorMessage('extraInfo')"
+            label="Extra info"
+            helperText="Any additional information you'd like to provide"
+        />
+
+        <ds-form-checkbox
+            [control]="getControl('privacyPolicy')"
+            [hasError]="hasError('privacyPolicy')"
+            label="I agree to the privacy policy"
+            [hasError]="hasError('privacyPolicy')"
+            [errorMessage]="getErrorMessage('privacyPolicy')"
+        />
+
+        <p-button
+            label="Submit"
+            type="submit"
+        />
+    </form>
+</div>

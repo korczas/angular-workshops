@@ -5,6 +5,7 @@ import {
     Column,
     CreateDateColumn,
     UpdateDateColumn,
+    JoinColumn,
 } from 'typeorm';
 
 import { Species } from '../../species/entities/species.entity';
@@ -30,15 +31,17 @@ export class Application {
     email: string;
 
     @ManyToOne(() => Species, (species) => species.applications)
+    @JoinColumn({ name: 'speciesId' })
     species: Species;
 
     @ManyToOne(() => Planet, (planet) => planet.applications)
+    @JoinColumn({ name: 'destinationPlanetId' })
     destinationPlanet: Planet;
 
     @Column()
     arrivalDate: Date;
 
-    @Column({ type: 'text' })
+    @Column({ type: 'text', nullable: true })
     extraInfo: string;
 
     @Column()

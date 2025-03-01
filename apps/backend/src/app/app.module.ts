@@ -6,6 +6,9 @@ import { Species } from '../species/entities/species.entity';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { ApplicationModule } from '../application/application.module';
+import { PlanetModule } from '../planet/planet.module';
+import { SpeciesModule } from '../species/species.module';
 
 @Module({
     imports: [
@@ -15,6 +18,9 @@ import { AppService } from './app.service';
             entities: [Application, Planet, Species],
             synchronize: true,
         }),
+        ApplicationModule,
+        PlanetModule,
+        SpeciesModule,
     ],
     controllers: [AppController],
     providers: [AppService],

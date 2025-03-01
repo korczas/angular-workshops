@@ -1,26 +1,48 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Application, ApplicationStatus } from './entities/application.entity';
 import { CreateApplicationDto } from './dto/create-application.dto';
 import { UpdateApplicationDto } from './dto/update-application.dto';
 
 @Injectable()
 export class ApplicationService {
-    create(createApplicationDto: CreateApplicationDto) {
-        return 'This action adds a new application';
+    constructor(
+        @InjectRepository(Application)
+        private applicationRepository: Repository<Application>,
+    ) {}
+
+    async create(applicationDto: CreateApplicationDto) {
+        const newApplication = this.applicationRepository.create({
+            ...applicationDto,
+            status: ApplicationStatus.PENDING,
+        });
+
+        return this.applicationRepository.save(newApplication);
     }
 
-    findAll() {
-        return `This action returns all application`;
+    async findAll() {
+        return this.applicationRepository.find({ relations: ['species', 'destinationPlanet'] });
     }
 
-    findOne(id: number) {
-        return `This action returns a #${id} application`;
+    async findOne(id: number) {
+        const application = await this.applicationRepository.findOne({
+            where: { id },
+            relations: ['species', 'destinationPlanet'],
+        });
+
+        if (!application) {
+            throw new NotFoundException(`Application with id ${id} not found`);
+        }
+
+        return application;
     }
 
-    update(id: number, updateApplicationDto: UpdateApplicationDto) {
-        return `This action updates a #${id} application`;
+    async update(id: number, updateApplicationDto: UpdateApplicationDto) {
+        return this.applicationRepository.save({ id, ...updateApplicationDto });
     }
 
-    remove(id: number) {
-        return `This action removes a #${id} application`;
+    async remove(id: number) {
+        return this.applicationRepository.delete(id);
     }
 }

@@ -1,0 +1,24 @@
+<div class="form-group">
+    <label>
+        {{ label }}
+        <p-calendar
+            [class.ng-dirty]="hasError"
+            [class.ng-invalid]="hasError"
+            [formControl]="control"
+            [maxDate]="maxDate"
+            [minDate]="minDate"
+            [selectionMode]="selectionMode"
+            [showClear]="showClear"
+            [showIcon]="true"
+            [placeholder]="placeholder"
+        />
+    </label>
+    <small *ngIf="helperText">{{ helperText }}</small>
+
+    <div
+        *ngIf="hasError"
+        class="p-error"
+    >
+        {{ errorMessage }}
+    </div>
+</div>

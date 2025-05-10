@@ -1,0 +1,16 @@
+<div class="form-group">
+    <p-checkbox
+        [class.ng-dirty]="hasError"
+        [class.ng-invalid]="hasError"
+        [formControl]="control"
+        [binary]="true"
+        [label]="label"
+    />
+
+    <div
+        *ngIf="hasError"
+        class="p-error"
+    >
+        {{ errorMessage }}
+    </div>
+</div>
